@@ -32,10 +32,23 @@ class homepage extends StatefulWidget {
 
 class _HomepageState extends State<homepage>{
   int dataToChange = 0;
+  bool changeTheme = true;
+  var colours;
+  var tcolours;
 
   void changedata(){
     setState((){
       dataToChange += 1;
+      if (changeTheme == true){
+        colours = Colors.white;
+        tcolours = Colors.black;
+        changeTheme = false;
+      }
+      else{
+        colours = Colors.black;
+        tcolours = Colors.white;
+        changeTheme = true;
+      }
     });
   }
 
@@ -43,6 +56,9 @@ class _HomepageState extends State<homepage>{
   void resetdata(){
     setState((){
       dataToChange = 0;
+      colours = Colors.white;
+      tcolours = Colors.black;
+      changeTheme = true;
     });
   }
   @override
@@ -53,17 +69,20 @@ class _HomepageState extends State<homepage>{
           "Stateful Widget",
         ),
       ),
+      backgroundColor: colours,
         body:Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+
               Padding(
                 padding: const EdgeInsets.all(20.0),
                child: Text(
                 "$dataToChange",
                  style: TextStyle(
                    fontSize: 24.0,
-                   fontWeight: FontWeight.bold
+                   fontWeight: FontWeight.bold,
+                   color: tcolours,
                  ),
               ),
               ),
@@ -76,7 +95,8 @@ class _HomepageState extends State<homepage>{
                   "Click Me",
                   style: TextStyle(
                       fontSize: 24.0,
-                      fontWeight: FontWeight.bold
+                      fontWeight: FontWeight.bold,
+                      color: tcolours,
                   ),
                 )
               ),
@@ -92,7 +112,8 @@ class _HomepageState extends State<homepage>{
                     "Reset",
                     style: TextStyle(
                         fontSize: 24.0,
-                        fontWeight: FontWeight.bold
+                        fontWeight: FontWeight.bold,
+                        color: tcolours,
                     ),
                   )
               ),
